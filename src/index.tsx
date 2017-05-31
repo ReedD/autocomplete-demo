@@ -11,8 +11,9 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Autocomplete />
+      <h3>My Favorite States</h3>
       <ItemList />
+      <Autocomplete />
     </div>
   </Provider>,
   document.getElementById('app'),

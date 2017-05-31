@@ -6,13 +6,15 @@ const initialState = {
 
 export default function(state = initialState, action: any) {
   switch (action.type) {
+    case actionTypes.SAVE:
+      return save(state, action);
     case actionTypes.SAVE_RESULT:
-      return saveItem(state, action);
+      return saveResult(state, action);
   }
   return state;
 }
 
-function saveItem(state: any, action: any) {
+function save(state: any, action: any) {
   const { item } = action;
   const { items } = state;
   for (const existing of items) {
@@ -20,5 +22,19 @@ function saveItem(state: any, action: any) {
       return state;
     }
   }
-  return {...state, items: [...items, item]};
+  return {...state, items: [...items, {
+    ...item,
+    saving: true,
+  }]};
+}
+
+function saveResult(state: any, action: any) {
+  const { item } = action;
+  const { items } = state;
+  return {...state, items: items.map((existing: any) => {
+    if (existing.abbr === item.abbr) {
+      return item;
+    }
+    return existing;
+  })};
 }

@@ -44,5 +44,6 @@ export const saveEpic: Epic<any, any> = (action$) =>
     .mergeMap((action) =>
       Observable
         .of(action.item)
+        .delay((Math.floor(Math.random() * 10) + 1) * 1000)
         .map((response) => savedResult(response)),
     );
