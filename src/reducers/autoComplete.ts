@@ -10,6 +10,8 @@ export default function(state = initialState, action: any) {
       return setValue(state, action);
     case actionTypes.SET_ITEMS:
       return setItems(state, action);
+    case actionTypes.SAVE:
+      return saveItem(state, action);
   }
   return state;
 }
@@ -21,5 +23,10 @@ function setItems(state: any, action: any) {
 
 function setValue(state: any, action: any) {
   const { value } = action;
+  return { ...state, value };
+}
+
+function saveItem(state: any, action: any) {
+  const value = '';
   return { ...state, value };
 }

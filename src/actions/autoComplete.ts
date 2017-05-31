@@ -21,14 +21,14 @@ function setItems(response: any) {
 export function save(value: string, item: any) {
   return {
     type: actionTypes.SAVE,
-    value,
+    item,
   };
 }
 
 function savedResult(response: any) {
   return {
     type: actionTypes.SAVE_RESULT,
-    response,
+    item: response,
   };
 }
 
@@ -43,8 +43,6 @@ export const saveEpic: Epic<any, any> = (action$) =>
   action$.ofType(actionTypes.SAVE)
     .mergeMap((action) =>
       Observable
-        .of([
-          {id: 1, value: 'apple'},
-        ])
+        .of(action.item)
         .map((response) => savedResult(response)),
     );

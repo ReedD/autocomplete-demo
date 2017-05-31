@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable';
-import { query, queryEpic, save, saveEpic } from './auto_complete';
+import { query, queryEpic, save, saveEpic } from './autoComplete';
 
 const rootEpic = combineEpics(
   queryEpic,
